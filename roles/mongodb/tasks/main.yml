@@ -1,0 +1,13 @@
+---
+# check if mongodb is installed
+
+
+
+# install mongodb
+
+- name: Install MongoDb database
+  apt: name=mongodb-enterprise state=present
+
+# start mongodb
+- name: Start mongodb service
+  service: name=mongod state=started enabled=yes

@@ -8,8 +8,14 @@ Feature: Provision and Install
     When I install Nodejs
     Then it should be successful
     And Nodejs should exist in system path
-
-  Scenario: Install Npm
-    When I install Nodejs
-    Then it should be successful
     And Npm should exist in the system path
+
+  #Scenario: Install bower
+  #  When I install bower
+  #  Then it should be successful
+  #  And Bower should exist in the system path
+
+  #Scenario: Install mocha
+  #  When I install mocha
+  #  Then it should be successful
+  #  And mocha should exist in the system path

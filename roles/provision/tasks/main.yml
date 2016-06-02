@@ -1,0 +1,29 @@
+---
+- name: Instal neccecary packages
+  apt: name=curl state=present
+  register: curl_installed
+
+
+# Download Nodejs
+- name: Download nodejs from node.source
+  command: bash -c "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
+
+# Add mongodb apt-key
+- name: Add MongoDb apt-key
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: EA312927
+
+# add mongodb repository
+- name: Add MongoDb repository
+  apt_repository:
+    repo: 'deb http://repo.mongodb.com/apt/ubuntu trusty/mongodb-enterprise/stable multiverse'
+    state: present
+
+# Update the cache
+- name: Update apt cache
+  apt:  update_cache=yes
+
+# upgrade the operating system
+- name: Update OS
+  apt: upgrade=dist force=yes

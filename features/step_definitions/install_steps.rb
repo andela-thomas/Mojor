@@ -14,6 +14,7 @@ When(/^I install Nodejs$/) do
   cmd = "ansible-playbook -i inventory.ini --private-key=.vagrant/machines/meanserver/virtualbox/private_key -u vagrant playbook.mean.yml --extra-vars 'roles=nodejs'"
 
   output, error, @status = Open3.capture3 "#{cmd}"
+  puts output
 
 end
 
@@ -22,11 +23,11 @@ Then(/^it should be successful$/) do
 end
 
 Then(/^Nodejs should exist in system path$/) do
-  output, error, status = Open3.capture3 "node -v"
+  output, error, status = Open3.capture3 "ls /usr/bin/node"
   expect(status.success?).to eq(true)
 end
 
 Then(/^Npm should exist in the system path$/) do
-  output, error, status = Open3.capture3 "npm -v"
+  output, error, status = Open3.capture3 "ls /usr/bin/node"
   expect(status.success?).to eq(true)
 end

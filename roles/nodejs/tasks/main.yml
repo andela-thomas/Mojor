@@ -2,6 +2,8 @@
 # install nodejs from the nodesource
 - name: Install Nodejs
   apt: name={{item}} state=present
+  become: yes
+  become_user: root
   with_items:
     - nodejs
     - build-essential
