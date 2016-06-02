@@ -1,0 +1,17 @@
+systemLog:
+  path: {{ mongodb_log_path }}/mongod.log
+  destination: file
+net:
+  bindIp: {{ mongodb_bind_ip }}
+security:
+  authorization: {{ mongodb_authorization }}
+storage:
+  dbPath: {{ mongodb_db_path }}
+  journal:
+    enabled: true
+  engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      statisticsLogDelaySecs: 30
+operationProfiling:
+  mode: slowOp

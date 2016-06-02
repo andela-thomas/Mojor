@@ -1,12 +1,37 @@
 ---
-# check if mongodb is installed
+# install pip
+- name: Install pip
+  apt: package=python-pip state=present
+  become: yes
 
+# install pyMongo
+- name: Install pyMongo
+  pip: name=pymongo executable=pip2
+  become: yes
 
+# create Configuration file
+- name: Create mongodb Configuration file
+  template: src=mongo.conf.j2 dest=/etc/mongod.conf mode=0644
+  become: yes
 
 # install mongodb
 
 - name: Install MongoDb database
   apt: name=mongodb-enterprise state=present
+  register: mongodb_install
+
+# lockdown mongodb
+- name: lockdown MongoDb
+  mongodb_user:
+    login_user: "{{admin_user}}"
+    login_password: "{{admin_password}}"
+    database: "{{database}}"
+    user: "{{user}}"
+    password: "{{password}}"
+    state: present
+    roles:
+      - {db: "local", role: "readWrite"}
+  when: mongodb_authorization == 'enabled' and mongodb_install | changed
 
 # start mongodb
 - name: Start mongodb service

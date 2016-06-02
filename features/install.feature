@@ -10,12 +10,9 @@ Feature: Provision and Install
     And Nodejs should exist in system path
     And Npm should exist in the system path
 
-  #Scenario: Install bower
-  #  When I install bower
-  #  Then it should be successful
-  #  And Bower should exist in the system path
-
-  #Scenario: Install mocha
-  #  When I install mocha
-  #  Then it should be successful
-  #  And mocha should exist in the system path
+  Scenario: Install MongoDB
+    When I install MongoDB
+    Then It should be successful
+    And pip should exist in system path
+    And pymongo should exist in system path
+    And it mongod service should be running
