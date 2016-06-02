@@ -1,0 +1,4 @@
+---
+- name: Instal neccecary packages
+  apt: name=curl state=present
+  register: curl_installed
