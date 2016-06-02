@@ -18,6 +18,8 @@
 
 - name: Install MongoDb database
   apt: name=mongodb-enterprise state=present
+  environment:
+    LC_ALL: C
   register: mongodb_install
 
 # lockdown mongodb
@@ -36,3 +38,4 @@
 # start mongodb
 - name: Start mongodb service
   service: name=mongod state=started enabled=yes
+

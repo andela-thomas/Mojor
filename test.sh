@@ -1,6 +1,6 @@
 # run cucumber tests from the root folder
 
 # start vagrant
-#vagrant up
+vagrant up
 # run the tests
-cucumber features/install.feature
+cucumber

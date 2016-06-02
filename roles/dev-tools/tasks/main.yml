@@ -1,0 +1,10 @@
+---
+# install mocha, gulp, bower and nodemon
+- name: Install dev-tools
+  command: bash -c "npm -g install {{item}}"
+  become: yes
+  with_items:
+    - gulp
+    - nodemon
+    - mocha
+    - bower
