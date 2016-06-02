@@ -11,17 +11,22 @@ And(/^I provision it$/) do
 end
 
 When(/^I install Nodejs$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  cmd = "ansible-playbook -i inventory.ini --private-key=.vagrant/machines/meanserver/virtualbox/private_key -u vagrant playbook.mean.yml --extra-vars 'roles=nodejs'"
+
+  output, error, @status = Open3.capture3 "#{cmd}"
+
 end
 
 Then(/^it should be successful$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@status.success?).to eq(true)
 end
 
 Then(/^Nodejs should exist in system path$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  output, error, status = Open3.capture3 "node -v"
+  expect(status.success?).to eq(true)
 end
 
 Then(/^Npm should exist in the system path$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  output, error, status = Open3.capture3 "npm -v"
+  expect(status.success?).to eq(true)
 end
